@@ -157,6 +157,27 @@ Retrieve a whole set of records in one call
 
 For example, `http://localhost:8080/mass/retrieve/1084,1092` Note that all the IDs must belong to the same module.
 
+### Mass Delete (DELETE)
+
+Delete a whole set of records in one call
+
+`http://yourapplication.tld/mass/delete/{ids}`
+
+For example, `http://localhost:8080/mass/delete/1084,1092`
+
+```json
+{
+  "success": true,
+  "result": {
+    "success_deletes": [
+      "12x1084",
+      "12x1092"
+    ],
+    "failed_deletes": []
+  }
+}
+```
+
 ## Future tasks
 
 There are a lot of things we can add. More operations from our web service API, paging on the query and list, custom API endpoints, ... but this project defines the path of how (officialy) we will support a RESTful API on top of all the awesome functionality EvolutivoFW and coreBOS provide!
