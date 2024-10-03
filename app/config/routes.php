@@ -12,6 +12,7 @@ use Slim\Routing\RouteCollectorProxy;
 use App\Middleware\AddJsonResponseHeader;
 use App\Middleware\RequireAPIKey;
 use App\Controllers\Module;
+use App\Controllers\MassOps;
 use App\Controllers\WSAPI;
 
 $app->get(
@@ -40,6 +41,16 @@ $app->get(
 $app->get(
 	'/listtypes',
 	[WSAPI::class, 'listtypes']
+)->add(RequireAPIKey::class)->add(AddJsonResponseHeader::class);
+
+$app->group(
+	'/mass/',
+	function (RouteCollectorProxy $group) {
+		// $group->post('create', [MassOps::class, 'create']);
+		$group->get('retrieve/'.SPEC_IDS, [MassOps::class, 'list']);
+		// $group->patch('update', [MassOps::class, 'update']);
+		// $group->delete('delete/'.SPEC_IDS, [MassOps::class, 'delete']);
+	}
 )->add(RequireAPIKey::class)->add(AddJsonResponseHeader::class);
 
 $app->group(

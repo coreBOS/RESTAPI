@@ -6,5 +6,6 @@
  *************************************************************************************************/
 define('APP_ROOT', dirname(__DIR__));
 define('SPEC_ID', '{id:[0-9]+x?[0-9]+|[a-zA-Z0-9]{40}}');
+define('SPEC_IDS', '{ids:(?:[0-9]+x?[0-9]+|[a-zA-Z0-9]{40})(?:,[0-9]+x?[0-9]+|[a-zA-Z0-9]{40})*}');
 define('SPEC_MODNAME', '{module:\w+}');
 define('SPEC_MODNAMES', '{module:\w+,?\w*}');
