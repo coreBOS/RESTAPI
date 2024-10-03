@@ -26,6 +26,12 @@ class MassOps {
 		return $response->withStatus($this->getResponseCode($rdo['success']));
 	}
 
+	public function delete(Request $request, Response $response, array $args): Response {
+		$rdo = $this->repository->delete(self::getAPIKey($request), $args['ids']);
+		$response = $this->writeOutput($response, $rdo);
+		return $response->withStatus($this->getResponseCode($rdo['success']));
+	}
+
 	private function writeOutput(Response $response, array $output): Response {
 		$response->getBody()->write(json_encode($output));
 		return $response;

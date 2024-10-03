@@ -49,7 +49,7 @@ $app->group(
 		// $group->post('create', [MassOps::class, 'create']);
 		$group->get('retrieve/'.SPEC_IDS, [MassOps::class, 'list']);
 		// $group->patch('update', [MassOps::class, 'update']);
-		// $group->delete('delete/'.SPEC_IDS, [MassOps::class, 'delete']);
+		$group->delete('delete/'.SPEC_IDS, [MassOps::class, 'delete']);
 	}
 )->add(RequireAPIKey::class)->add(AddJsonResponseHeader::class);
 

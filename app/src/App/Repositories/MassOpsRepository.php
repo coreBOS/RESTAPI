@@ -32,6 +32,20 @@ class MassOpsRepository {
 		return $rdo;
 	}
 
+	public function delete(string $apikey, string $ids): array {
+		$cb = new WSClient($_ENV['cburl'], $apikey);
+		$rdo = $cb->doMassDelete($ids);
+		if ($rdo === false) {
+			$rdo = $this->getErrorResponse('Record not found', 'INVALID_ID_ATTRIBUTE');
+		} else {
+			$rdo = [
+				'success' => true,
+				'result' => $rdo,
+			];
+		}
+		return $rdo;
+	}
+
 	private function getErrorResponse(string $msg, string $code): array {
 		return [
 			'success' => false,
